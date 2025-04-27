@@ -28,6 +28,13 @@
       linear-gradient(to bottom, rgba(255,255,255,0) 60%, #fff 100%),
       url('images/background.jpeg') center/cover no-repeat;
   }
+  header.bg-photo::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 80%;
+    background: rgba(255,255,255,0.6);
+    z-index: 1;
+  }
   
   /*=============================================
     TITLE -アニメーション
