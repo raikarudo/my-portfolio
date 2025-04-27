@@ -18,46 +18,33 @@
   }
   
   /*=============================================
-    HEADER - full-screen background + overlay
+    HEADER - full‐screen background + overlay
   =============================================*/
   header.bg-photo {
-    position: relative;
+    
     width: 100vw;
     height: 100vh;
+    justify-content: center;
     background:
       linear-gradient(to bottom, rgba(255,255,255,0) 60%, #fff 100%),
       url('images/background.jpeg') center/cover no-repeat;
   }
-  header.bg-photo::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 80%;
-    background: rgba(255,255,255,0.6);
-    z-index: 1;
-  }
-  
-  /*=============================================
-    TITLE -アニメーション
-  =============================================*/
-  #title {
+  #title, #subtitle {
     position: relative;
     z-index: 2;
     text-align: center;
     font-family: 'Cherry Swash', cursive;
     font-size: 3em;
     color: #000;
-    padding-top: 40vh;
     animation: fadeInUp 3s forwards;
   }
+  #subtitle {
+    font-size: 2em;
+    padding-top: 0.5em;
+  }
   @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
   
   /*=============================================
@@ -70,21 +57,17 @@
   }
   
   /*=============================================
-    ABOUT & WORKS - 2-column GRID
+    ABOUT SECTION - 3‐column GRID
   =============================================*/
-  section#about,
-  section#works {
-    position: relative;               /* .selfie を absolute 配置する基準 */
+  section#about {
     display: grid;
-    grid-template-columns: auto 1fr;  /* 左: タイトル、右: コンテンツ */
+    grid-template-columns: auto 200px 1fr;
     align-items: start;
     gap: 20px;
     max-width: 900px;
     margin: 0 auto 60px;
     padding: 0 20px;
   }
-  
-  /* 縦書きセクションタイトル */
   .sectiontitle {
     writing-mode: vertical-rl;
     text-orientation: upright;
@@ -94,36 +77,38 @@
     background: #fff;
     padding: 10px;
     box-shadow: 0 2px 4px rgba(255,162,162,0.75);
-  
-    /* ビューポートの左端に寄せる */
-    position: relative;
-    transform: translateX(calc((900px - 100vw)/2));
-    z-index: 3;
+    grid-column: 1;
   }
-  
-  /* About の自己紹介写真を正方形で左端に固定 */
   section#about .selfie {
-    position: absolute;
-    top: 0;
-    left: 0;
+    grid-column: 2;
     width: 200px;
     height: 200px;
     object-fit: cover;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    background: #fff;
-    z-index: 2;
   }
-  
-  /* About テキスト */
-  #about p {
-    grid-column: 2;
-    margin-top: 220px;
+  section#about .caption {
+    grid-column: 3;
     font-size: 1.1em;
+    line-height: 1.5;
   }
   
-  /* Works ギャラリー */
-  #works .container {
+  /*=============================================
+    WORKS SECTION - 2‐column GRID
+  =============================================*/
+  section#works {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto 60px;
+    padding: 0 20px;
+  }
+  section#works .sectiontitle {
+    grid-column: 1;
+  }
+  section#works .container {
     grid-column: 2;
     display: flex;
     justify-content: center;
@@ -132,37 +117,29 @@
     margin-top: 20px;
     padding: 0;
   }
-  #works .container > li {
+  section#works .container > li {
     flex: 1;
     min-width: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  
-  /* 作品画像 */
   .logo {
     display: block;
     width: 100%;
     max-width: 260px;
-    height: auto;
     margin-bottom: 8px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rebeccapurple;
   }
-  
-  /* 作品キャプション */
-  .caption {
-    width: 100%;
+  section#works .caption {
     text-align: center;
     font-family: 'Cherry Swash', cursive;
     font-size: 1.1em;
-    margin-top: 4px;
-    white-space: normal;
   }
   
   /*=============================================
-    CONTACT - 左揃え
+    CONTACT SECTION - 左揃え
   =============================================*/
   #contact {
     text-align: left;
